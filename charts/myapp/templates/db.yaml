@@ -28,8 +28,6 @@ spec:
       containers:
         - name: mydb
           image: {{ .Values.db.image }}
-          args:
-            - "--ignore-db-dir=lost+found"
           ports:
             - containerPort: 3306
               name: tcp
