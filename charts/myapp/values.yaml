@@ -1,0 +1,42 @@
+namespace: default
+
+storageClass:
+  name: ebs-gp3
+  type: gp3
+  fsType: ext4
+
+db:
+  image: mysql:latest
+  replicas: 1
+  storage: 10Gi
+  secret:
+    rootPassword: "P@ssw0rd"
+    password: "P@ssw0rd"
+    database: "joess"
+    user: "joess"
+
+redis:
+  image: redis:latest
+  replicas: 1
+  storage: 1Gi
+
+app:
+  image: joess/cicd_was:v1
+  replicas: 3
+  secret:
+    mysqlUser: "joess"
+    mysqlPassword: "P@ssw0rd"
+    secretKey: "your_secret_key"
+  config:
+    mysqlHost: "db-svc"
+    mysqlDb: "joess"
+    sessionRedisHost: "redis-svc"
+    sessionRedisPort: "6379"
+
+nginx:
+  image: nginx
+  replicas: 3
+
+ingress:
+  host: www.joess.o-r.kr
+  certificateArn: arn:aws:acm:ap-northeast-2:402399409763:certificate/a10b99f6-7148-4db8-96a9-1cb164c46fe9
