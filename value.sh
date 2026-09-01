@@ -26,9 +26,9 @@ fi
 
 
 # host 변경
-sed -i -E "s/^([[:space:]]*host:[[:space:]]*).*/\1$NEW_HOST/" "$VALUES_FILE"
+sed -i -E "s@^([[:space:]]*host:[[:space:]]*).*@\1$NEW_HOST@" "$VALUES_FILE"
 # arn변경
-sed -i -E "s/^([[:space:]]*certificateArn:[[:space:]]*).*/\1$ARN/" "$VALUES_FILE"
+sed -i -E "s@^([[:space:]]*certificateArn:[[:space:]]*).*@\1$ARN@" "$VALUES_FILE"
 
 echo "values.yaml 수정 완료"
 echo "host: $NEW_HOST"
