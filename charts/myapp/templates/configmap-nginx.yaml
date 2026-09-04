@@ -11,7 +11,7 @@ data:
 
     http {
         upstream was {
-            server myapp-svc:5000;
+            server eks-deploy-svc:5000;
         }
 
         server {
